@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Users, Star, TrendingUp } from "lucide-react";
 import CardScene from "@/components/ui/CardScene";
+import FloatingCards from "@/components/ui/FloatingCards";
 
 const stats = [
   { value: "100M+", label: "clientes",  icon: Users },
@@ -84,6 +85,9 @@ export default function Hero() {
           }}
         />
       </div>
+
+      {/* Floating cards in background */}
+      <FloatingCards count={7} />
 
       {/* ── Content ── */}
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-28">

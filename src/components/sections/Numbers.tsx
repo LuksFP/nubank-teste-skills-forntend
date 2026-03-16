@@ -1,4 +1,5 @@
 import AnimatedSection from "@/components/ui/AnimatedSection";
+import FloatingCards from "@/components/ui/FloatingCards";
 
 const stats = [
   { value: "100M+", label: "clientes ativos",  desc: "em todo o Brasil e América Latina", highlight: true },
@@ -15,6 +16,9 @@ export default function Numbers() {
       className="relative py-28 overflow-hidden"
       style={{ background: "linear-gradient(160deg, #0d0020 0%, #1C0032 35%, #3B0066 70%, #5F0A9A 100%)" }}
     >
+      {/* Floating cards */}
+      <FloatingCards count={5} />
+
       {/* Glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div

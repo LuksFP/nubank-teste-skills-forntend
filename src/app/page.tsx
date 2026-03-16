@@ -1,5 +1,6 @@
 import Hero from "@/components/sections/Hero";
 import Products from "@/components/sections/Products";
+import CardShowcase from "@/components/sections/CardShowcase";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Numbers from "@/components/sections/Numbers";
 import Testimonials from "@/components/sections/Testimonials";
@@ -12,6 +13,7 @@ export default function HomePage() {
     <>
       <Hero />
       <Products />
+      <CardShowcase />
       <HowItWorks />
       <Numbers />
       <Testimonials />
