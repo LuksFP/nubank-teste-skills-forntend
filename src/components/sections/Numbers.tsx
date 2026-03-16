@@ -1,10 +1,12 @@
+import AnimatedSection from "@/components/ui/AnimatedSection";
+
 const stats = [
-  { value: "100M+", label: "clientes ativos", desc: "em todo o Brasil e América Latina" },
-  { value: "R$ 0", label: "de anuidade", desc: "no cartão de crédito para sempre" },
-  { value: "100%", label: "do CDI", desc: "de rendimento na conta digital" },
-  { value: "#1", label: "banco digital", desc: "mais amado pelos brasileiros" },
-  { value: "4.9★", label: "nas lojas", desc: "App Store e Google Play" },
-  { value: "24/7", label: "suporte", desc: "atendimento humano pelo app" },
+  { value: "100M+", label: "clientes ativos",      desc: "em todo o Brasil e América Latina" },
+  { value: "R$ 0",  label: "de anuidade",           desc: "no cartão de crédito, para sempre" },
+  { value: "100%",  label: "do CDI",                desc: "de rendimento na conta digital" },
+  { value: "#1",    label: "banco digital",          desc: "mais amado pelos brasileiros" },
+  { value: "4.9★",  label: "nas lojas",              desc: "App Store e Google Play" },
+  { value: "24/7",  label: "suporte",                desc: "atendimento humano pelo app" },
 ];
 
 export default function Numbers() {
@@ -13,52 +15,45 @@ export default function Numbers() {
       className="py-24 relative overflow-hidden"
       style={{ background: "linear-gradient(135deg, #1C0032 0%, #3B0066 50%, #5F0A9A 100%)" }}
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* Purple blobs — composited, no filter on each individual */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div
-          className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10 blur-3xl"
-          style={{ background: "#A020D0" }}
+          className="purple-blob w-96 h-96 -top-20 -right-20 opacity-20"
+          style={{ filter: "blur(70px)" }}
         />
         <div
-          className="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-10 blur-3xl"
-          style={{ background: "#820AD1" }}
+          className="purple-blob w-96 h-96 -bottom-20 -left-20 opacity-15"
+          style={{ filter: "blur(70px)" }}
         />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-wider mb-3 text-purple-300">
+        <AnimatedSection animation="fade-up" className="text-center mb-14">
+          <span className="section-label justify-center" style={{ color: "#D4B4FF" }}>
+            <span style={{ background: "#D4B4FF" }} />
             Nossos números
-          </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-3">
             O banco que não para de crescer
           </h2>
-        </div>
+        </AnimatedSection>
 
-        {/* Stats grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {stats.map((stat, i) => (
-            <div
-              key={stat.label}
-              className="text-center p-6 rounded-2xl"
-              style={{
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                animationDelay: `${i * 0.1}s`,
-              }}
-            >
+            <AnimatedSection key={stat.label} animation="scale" delay={i * 70}>
               <div
-                className="text-4xl lg:text-5xl font-bold mb-2"
-                style={{ color: "#D4B4FF" }}
+                className="text-center p-6 rounded-2xl glass h-full"
+                style={{ border: "1px solid rgba(212,180,255,0.15)" }}
               >
-                {stat.value}
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-black mb-2" style={{ color: "#D4B4FF" }}>
+                  {stat.value}
+                </div>
+                <div className="text-sm sm:text-base font-semibold text-white mb-1">
+                  {stat.label}
+                </div>
+                <div className="text-xs text-purple-400">{stat.desc}</div>
               </div>
-              <div className="text-base font-semibold text-white mb-1">
-                {stat.label}
-              </div>
-              <div className="text-sm text-purple-300">{stat.desc}</div>
-            </div>
+            </AnimatedSection>
           ))}
         </div>
       </div>

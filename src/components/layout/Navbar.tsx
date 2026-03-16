@@ -119,7 +119,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <Link
               href="#login"
-              className={`text-sm font-medium px-4 py-2 rounded-full transition-colors ${
+              className={`text-sm font-medium px-4 py-2 rounded-full transition-colors focus-visible:ring-2 ${
                 isScrolled
                   ? "text-[#820AD1] hover:bg-purple-50"
                   : "text-white/90 hover:text-white"
@@ -128,9 +128,8 @@ export default function Navbar() {
               Entrar
             </Link>
             <Link
-              href="#pedircartao"
-              className="text-sm font-semibold px-5 py-2.5 rounded-full transition-all hover:scale-105 active:scale-95"
-              style={{ background: "#820AD1", color: "white" }}
+              href="/cartao"
+              className="btn-shimmer text-sm font-bold px-5 py-2.5 rounded-full text-white focus-visible:outline-white"
             >
               Pedir cartão
             </Link>
@@ -139,7 +138,9 @@ export default function Navbar() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
+            aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={isOpen}
+            className={`lg:hidden p-2 rounded-lg transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 ${
               isScrolled ? "text-gray-700" : "text-white"
             }`}
           >
