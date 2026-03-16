@@ -6,6 +6,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 
 const products = [
   { name: "Cartão de Crédito", href: "/cartao", desc: "Sem anuidade, sem complicação" },
+  { name: "Ultravioleta", href: "/ultravioleta", desc: "Nosso cartão premium com cashback" },
   { name: "Conta Digital", href: "/conta", desc: "Conta gratuita com rendimento" },
   { name: "Seguros", href: "/seguros", desc: "Proteção para você e sua família" },
   { name: "Empréstimo", href: "/emprestimo", desc: "Crédito pessoal descomplicado" },
@@ -89,7 +90,7 @@ export default function Navbar() {
             </div>
 
             <Link
-              href="#sobre"
+              href="/sobre"
               className={`text-sm font-medium transition-colors ${
                 isScrolled ? "text-gray-700 hover:text-[#820AD1]" : "text-white/90 hover:text-white"
               }`}
@@ -97,7 +98,7 @@ export default function Navbar() {
               Sobre
             </Link>
             <Link
-              href="#blog"
+              href="/blog"
               className={`text-sm font-medium transition-colors ${
                 isScrolled ? "text-gray-700 hover:text-[#820AD1]" : "text-white/90 hover:text-white"
               }`}
@@ -105,7 +106,7 @@ export default function Navbar() {
               Blog
             </Link>
             <Link
-              href="#carreiras"
+              href="/carreiras"
               className={`text-sm font-medium transition-colors ${
                 isScrolled ? "text-gray-700 hover:text-[#820AD1]" : "text-white/90 hover:text-white"
               }`}
