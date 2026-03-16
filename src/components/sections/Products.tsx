@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { CreditCard, Wallet, Shield, TrendingUp, DollarSign, ArrowRight, Layers } from "lucide-react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
@@ -6,157 +8,218 @@ const products = [
   {
     icon: CreditCard,
     title: "Cartão de Crédito",
-    description: "Sem anuidade para sempre. Controle tudo pelo app com limite inteligente.",
+    description: "Sem anuidade para sempre. Limite inteligente, controle total pelo app.",
     features: ["Sem anuidade", "Cashback exclusivo", "Parcelamento sem juros"],
     href: "/cartao",
     accent: "#820AD1",
-    bg: "#F5E6FF",
+    tag: "Mais popular",
   },
   {
     icon: Wallet,
     title: "Conta Digital",
-    description: "Conta gratuita com rendimento de 100% do CDI. Pix grátis e ilimitado.",
-    features: ["Sem taxa mensal", "Rende 100% CDI", "Pix grátis ilimitado"],
+    description: "Rendimento automático de 100% do CDI. Pix grátis e ilimitado.",
+    features: ["Grátis para sempre", "100% CDI", "Pix ilimitado"],
     href: "/conta",
     accent: "#00BFA5",
-    bg: "#E0F7F4",
+    tag: null,
   },
   {
     icon: Shield,
     title: "Seguros",
-    description: "Proteção completa para você, sua família e seus bens. Simples e sem papelada.",
-    features: ["Vida, auto, residência", "Contratação digital", "Suporte 24/7"],
+    description: "Vida, auto e residência contratados pelo app em minutos.",
+    features: ["Vários tipos", "100% digital", "Suporte 24/7"],
     href: "/seguros",
     accent: "#E53935",
-    bg: "#FFEBEE",
+    tag: null,
   },
   {
     icon: DollarSign,
-    title: "Empréstimo Pessoal",
-    description: "Crédito na hora que você precisa, com taxas justas e condições transparentes.",
-    features: ["Aprovação rápida", "Taxas competitivas", "Parcelas fixas"],
+    title: "Empréstimo",
+    description: "Crédito aprovado em minutos com taxas transparentes e parcelas fixas.",
+    features: ["Aprovação rápida", "Taxas justas", "Sem surpresas"],
     href: "/emprestimo",
     accent: "#F57C00",
-    bg: "#FFF3E0",
+    tag: null,
   },
   {
     icon: TrendingUp,
     title: "Investimentos",
-    description: "RDB, fundos, ações e muito mais na palma da mão, sem taxa de administração.",
-    features: ["A partir de R$ 1", "Sem taxa", "Diversidade de produtos"],
+    description: "Invista a partir de R$ 1 em RDB, fundos, ações e criptomoedas.",
+    features: ["A partir de R$ 1", "Sem taxa", "Diversidade"],
     href: "/investimentos",
     accent: "#388E3C",
-    bg: "#E8F5E9",
+    tag: "Novo",
   },
 ];
 
 export default function Products() {
   return (
-    <section className="py-24 bg-white" id="produtos">
-      {/* Purple top accent bar */}
-      <div className="h-1 w-full" style={{ background: "linear-gradient(90deg, transparent, #820AD1, #A020D0, transparent)" }} aria-hidden="true" />
+    <section className="relative py-28 bg-white overflow-hidden" id="produtos">
+      {/* Top purple stripe */}
+      <div
+        className="absolute top-0 left-0 right-0 h-1"
+        style={{ background: "linear-gradient(90deg, transparent 0%, #820AD1 30%, #C050FF 70%, transparent 100%)" }}
+        aria-hidden="true"
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
-        {/* Header */}
-        <AnimatedSection animation="fade-up" className="text-center mb-16">
-          <span className="section-label mb-4 justify-center">Nossos produtos</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mt-3 mb-4">
+      {/* Faint background pattern */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.025]"
+        style={{
+          backgroundImage: "radial-gradient(circle at 1px 1px, #820AD1 1px, transparent 0)",
+          backgroundSize: "36px 36px",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* ── Header ── */}
+        <AnimatedSection animation="fade-up" className="max-w-2xl mx-auto text-center mb-16">
+          <span className="section-label justify-center mb-5">Nossos produtos</span>
+          <h2 className="text-4xl sm:text-5xl font-black text-gray-900 leading-tight mt-2 mb-4">
             Tudo que você precisa,{" "}
+            <br className="hidden sm:block" />
             <span className="text-gradient">num só lugar</span>
           </h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-            Do cartão de crédito aos investimentos, soluções completas para cada momento da sua vida financeira.
+          <p className="text-lg text-gray-500">
+            Soluções financeiras completas para cada momento da sua vida.
           </p>
         </AnimatedSection>
 
-        {/* Products grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {products.map((product, index) => (
-            <AnimatedSection
-              key={product.title}
-              animation="fade-up"
-              delay={index * 80}
-            >
+        {/* ── Grid ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {products.map((p, i) => (
+            <AnimatedSection key={p.title} animation="fade-up" delay={i * 70}>
               <Link
-                href={product.href}
-                className="card-hover card-purple-border rounded-2xl p-6 group block h-full bg-white"
+                href={p.href}
+                className="group block h-full rounded-3xl bg-white p-6 relative overflow-hidden transition-all duration-300 hover:-translate-y-2"
+                style={{
+                  border: "1.5px solid #EDE4F8",
+                  boxShadow: "0 2px 12px rgba(130,10,209,0.06)",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = p.accent + "55";
+                  (e.currentTarget as HTMLElement).style.boxShadow = `0 16px 40px ${p.accent}20`;
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.borderColor = "#EDE4F8";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(130,10,209,0.06)";
+                }}
               >
+                {/* Tag */}
+                {p.tag && (
+                  <div
+                    className="absolute top-4 right-4 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider text-white"
+                    style={{ background: p.accent }}
+                  >
+                    {p.tag}
+                  </div>
+                )}
+
                 {/* Icon */}
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
-                  style={{ background: product.bg }}
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
+                  style={{ background: p.accent + "18" }}
                 >
-                  <product.icon size={22} style={{ color: product.accent }} />
+                  <p.icon size={22} style={{ color: p.accent }} />
                 </div>
 
-                {/* Text */}
-                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-nu-purple transition-colors">
-                  {product.title}
+                <h3
+                  className="text-base font-black text-gray-900 mb-2 transition-colors"
+                  style={{ lineHeight: 1.3 }}
+                >
+                  {p.title}
                 </h3>
-                <p className="text-sm text-gray-500 mb-4 leading-relaxed">
-                  {product.description}
+                <p className="text-sm text-gray-500 leading-relaxed mb-5">
+                  {p.description}
                 </p>
 
                 {/* Features */}
-                <ul className="space-y-1.5 mb-5">
-                  {product.features.map((f) => (
+                <ul className="space-y-1.5 mb-6">
+                  {p.features.map((f) => (
                     <li key={f} className="flex items-center gap-2 text-xs text-gray-600">
                       <span
-                        className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
-                        style={{ background: product.accent }}
+                        className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                        style={{ background: p.accent }}
                       />
                       {f}
                     </li>
                   ))}
                 </ul>
 
-                {/* CTA */}
+                {/* Footer CTA */}
                 <div
-                  className="flex items-center gap-1 text-sm font-semibold group-hover:gap-2 transition-all"
-                  style={{ color: product.accent }}
+                  className="flex items-center gap-1 text-sm font-bold group-hover:gap-2 transition-all"
+                  style={{ color: p.accent }}
                 >
-                  Saiba mais <ArrowRight size={14} />
+                  Conhecer <ArrowRight size={14} />
                 </div>
+
+                {/* Bottom accent bar on hover */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-b-3xl"
+                  style={{ background: `linear-gradient(90deg, ${p.accent}, transparent)` }}
+                />
               </Link>
             </AnimatedSection>
           ))}
 
-          {/* Ultravioleta — dark card */}
-          <AnimatedSection animation="fade-up" delay={products.length * 80}>
+          {/* Ultravioleta dark card */}
+          <AnimatedSection animation="fade-up" delay={products.length * 70}>
             <div
-              className="card-hover rounded-2xl p-6 text-white relative overflow-hidden h-full"
-              style={{ background: "linear-gradient(135deg, #1C0032 0%, #5F0A9A 100%)" }}
+              className="group block h-full rounded-3xl p-6 relative overflow-hidden transition-all duration-300 hover:-translate-y-2"
+              style={{
+                background: "linear-gradient(135deg, #0d0020 0%, #1C0032 40%, #3B0066 75%, #5F0A9A 100%)",
+                boxShadow: "0 8px 32px rgba(130,10,209,0.3)",
+              }}
             >
+              {/* Sheen */}
               <div
-                className="purple-blob w-48 h-48 top-[-40px] right-[-40px] opacity-30"
-                style={{ filter: "blur(40px)" }}
-                aria-hidden="true"
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"
+                style={{
+                  background: "linear-gradient(135deg, rgba(212,180,255,0.08), transparent 60%)",
+                }}
               />
 
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 glass"
-              >
-                <Layers size={22} className="text-white" />
+                className="absolute -top-8 -right-8 w-36 h-36 rounded-full opacity-20"
+                style={{ background: "radial-gradient(circle, #A020D0, transparent)" }}
+                aria-hidden="true"
+              />
+
+              <div className="relative">
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5 glass">
+                  <Layers size={22} className="text-white" />
+                </div>
+
+                <span className="nu-tag nu-tag-dark text-[10px] mb-3 inline-flex">
+                  Premium · Mastercard Black
+                </span>
+
+                <h3 className="text-base font-black text-white mt-3 mb-2">
+                  Ultravioleta
+                </h3>
+                <p className="text-sm text-purple-300 leading-relaxed mb-5">
+                  Cashback de 1% em tudo, acesso a salas VIP e benefícios exclusivos.
+                </p>
+
+                <ul className="space-y-1.5 mb-6">
+                  {["1% cashback em tudo", "Salas VIP em aeroportos", "Mastercard Black"].map((f) => (
+                    <li key={f} className="flex items-center gap-2 text-xs text-purple-300">
+                      <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-purple-400" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  href="/ultravioleta"
+                  className="flex items-center gap-1 text-sm font-bold text-purple-300 hover:text-white hover:gap-2 transition-all"
+                >
+                  Conhecer <ArrowRight size={14} />
+                </Link>
               </div>
-
-              <span
-                className="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider mb-3"
-                style={{ background: "rgba(212,180,255,0.2)", color: "#D4B4FF" }}
-              >
-                Premium
-              </span>
-
-              <h3 className="text-base font-bold text-white mb-2">Ultravioleta</h3>
-              <p className="text-sm text-purple-200 mb-5 leading-relaxed">
-                Nosso cartão premium com cashback de 1% em tudo, acesso a salas VIP e benefícios Mastercard Black.
-              </p>
-
-              <Link
-                href="/ultravioleta"
-                className="flex items-center gap-1 text-sm font-semibold text-purple-300 hover:text-white transition-colors"
-              >
-                Conhecer <ArrowRight size={14} />
-              </Link>
             </div>
           </AnimatedSection>
         </div>
